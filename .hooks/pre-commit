@@ -1,25 +1,61 @@
 #!/bin/bash
 
-# Maximum file size in bytes (25MB)
-MAX_SIZE=$((25 * 1024 * 1024))
+# Configuration
+MAX_SIZE_MB=5
+MAX_SIZE_BYTES=$((MAX_SIZE_MB * 1024 * 1024))
+IGNORED_PATTERNS=(
+    '.git/'
+    '*.min.js'
+    '*.min.css'
+)
 
-# Get list of all files tracked by git
-files=$(git ls-files)
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
 
-# Check each file
-for file in $files; do
-    # Skip if file doesn't exist
-    [ -f "$file" ] || continue
+echo -e "${YELLOW}Checking for files larger than 5MB...${NC}"
+
+# Get list of files to be committed
+files_changed=$(git diff --cached --name-only)
+large_files_found=0
+
+for file in $files_changed; do
+    # Skip if file is deleted
+    if [ ! -f "$file" ]; then
+        continue
+    fi
     
-    # Get file size in bytes
-    size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+    # Skip ignored patterns
+    skip=0
+    for pattern in "${IGNORED_PATTERNS[@]}"; do
+        if [[ "$file" =~ $pattern ]]; then
+            skip=1
+            break
+        fi
+    done
+    [ $skip -eq 1 ] && continue
     
-    # Compare with max size
-    if [ "$size" -gt $MAX_SIZE ]; then
-        echo "Error: $file is larger than 25MB (size: $size bytes)"
-        echo "Please remove large files before committing"
-        exit 1
+    # Get file size (works on both Linux and MacOS)
+    file_size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+    size_mb=$(awk "BEGIN {printf \"%.2f\", $file_size/1024/1024}")
+    
+    if [ "$file_size" -gt "$MAX_SIZE_BYTES" ]; then
+        echo -e "${RED} Error: $file is ${size_mb}MB (larger than 5MB limit)${NC}"
+        large_files_found=1
     fi
 done
 
+if [ $large_files_found -eq 1 ]; then
+    echo -e "\n${RED}Commit rejected: Found files larger than 5MB${NC}"
+    echo -e "${YELLOW}Suggestions:${NC}"
+    echo "1. Use Git LFS for large files"
+    echo "2. Add large files to .gitignore"
+    echo "3. Store them on external storage/CDN"
+    echo "4. Compress the files if possible"
+    exit 1
+fi
+
+echo -e "${GREEN} All files are within the 5MB limit${NC}"
 exit 0
