@@ -1,0 +1,6 @@
+urdf_path: robot_description/gpr/robot.urdf
+urdf_root: robot_description/gpr
+base_height: 0.411
+scale: 1.0
+t_pose: [0, 0, 0.411, 0, 0, 0, 1, 0, 0, 0, -0.15, 0.3, -0.15, 0, 0, -0.15, 0.3, -0.15,
+         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

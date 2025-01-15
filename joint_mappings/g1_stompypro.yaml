@@ -1,0 +1,23 @@
+# Format - source_robot_joint: target_robot_joint
+source_robot: "g1"
+target_robot: "stompypro"
+height_offset: 0.155  # Vertical offset between robots
+joint_pairs:
+  left_hip_pitch_joint: L_hip_y
+  left_hip_roll_joint: L_hip_x
+  left_hip_yaw_joint: L_hip_z
+  left_knee_joint: L_knee
+  left_shoulder_pitch_joint: L_shoulder_y
+  left_shoulder_roll_joint: L_shoulder_x
+  left_shoulder_yaw_joint: L_shoulder_z
+  left_ankle_pitch_joint: L_ankle_y
+  left_elbow_joint: L_elbow_x
+  right_hip_pitch_joint: R_hip_y
+  right_hip_roll_joint: R_hip_x
+  right_hip_yaw_joint: R_hip_z
+  right_knee_joint: R_knee
+  right_shoulder_pitch_joint: R_shoulder_y
+  right_shoulder_roll_joint: R_shoulder_x
+  right_shoulder_yaw_joint: R_shoulder_z
+  right_ankle_pitch_joint: R_ankle_y
+  right_elbow_joint: R_elbow_x

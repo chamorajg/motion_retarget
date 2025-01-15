@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Maximum file size in bytes (25MB)
+MAX_SIZE=$((25 * 1024 * 1024))
+
+# Get list of all files tracked by git
+files=$(git ls-files)
+
+# Check each file
+for file in $files; do
+    # Skip if file doesn't exist
+    [ -f "$file" ] || continue
+    
+    # Get file size in bytes
+    size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+    
+    # Compare with max size
+    if [ "$size" -gt $MAX_SIZE ]; then
+        echo "Error: $file is larger than 25MB (size: $size bytes)"
+        echo "Please remove large files before committing"
+        exit 1
+    fi
+done
+
+exit 0

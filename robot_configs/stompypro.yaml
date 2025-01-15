@@ -1,0 +1,6 @@
+urdf_path: robot_description/stompypro/robot_test.urdf
+urdf_root: robot_description/stompypro
+base_height: 0.63
+scale: 1000.0
+t_pose: [0, 0, 0.63, 0, 0, 0, 1, 0, 0, -0.15, 0.3, -0.15, 0, 0, -0.15, 0.3, -0.15,
+         0, 0, 0, 0, 0, 0, 0, 0]

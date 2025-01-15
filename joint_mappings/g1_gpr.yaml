@@ -1,0 +1,23 @@
+# Format - source_robot_joint: target_robot_joint
+source_robot: "g1"
+target_robot: "gpr"
+height_offset: 0.374  # Vertical offset between robots # (source_base_height - target_base_height)
+joint_pairs:
+  left_hip_pitch_joint: left_hip_pitch_joint
+  left_hip_roll_joint: left_hip_roll_joint
+  left_hip_yaw_joint: left_hip_yaw_joint
+  left_knee_joint: left_knee_joint
+  left_shoulder_pitch_joint: left_shoulder_pitch_joint
+  left_shoulder_roll_joint: left_shoulder_roll_joint
+  left_shoulder_yaw_joint: left_shoulder_yaw_joint
+  left_ankle_pitch_joint: left_ankle_joint
+  left_elbow_joint: left_elbow_joint
+  right_hip_pitch_joint: right_hip_pitch_joint
+  right_hip_roll_joint: right_hip_roll_joint
+  right_hip_yaw_joint: right_hip_yaw_joint
+  right_knee_joint: right_knee_joint
+  right_shoulder_pitch_joint: right_shoulder_pitch_joint
+  right_shoulder_roll_joint: right_shoulder_roll_joint
+  right_shoulder_yaw_joint: right_shoulder_yaw_joint
+  right_ankle_pitch_joint: right_ankle_joint
+  right_elbow_joint: right_elbow_joint

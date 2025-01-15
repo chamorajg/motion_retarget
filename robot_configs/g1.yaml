@@ -1,0 +1,6 @@
+urdf_path: robot_description/g1/g1_29dof_rev_1_0.urdf
+urdf_root: robot_description/g1
+base_height: 0.785
+scale: 1.0
+t_pose: [0, 0, 0.785, 0, 0, 0, 1, -0.15, 0, 0, 0.3, -0.15, 0, -0.15, 0, 0, 0.3, -0.15, 
+         0, 0, 0, 0, 0, 1.57, 0, 1.57, 0, 0, 0, 0, -1.57, 0, 1.57, 0, 0, 0]

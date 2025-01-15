@@ -1,0 +1,6 @@
+numpy==1.24.3
+pinocchio==0.4.3
+rerun==1.0.30
+torch==2.5.0
+tqdm==4.67.0
+trimesh==4.5.3
